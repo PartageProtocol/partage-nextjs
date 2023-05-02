@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 
 import classes from "./main-navigation.module.css";
 
-import Button from "../ui/button";
-import UserIcon from "../icons/user-icon";
-
 function MainNavigation() {
-  const signupLink = `/create-account`;
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+
+  function logoutHandler() {
+    signOut();
+  }
 
   return (
     <header className={classes.header}>
@@ -18,20 +21,26 @@ function MainNavigation() {
           <li>
             <Link href="/nfts">Marketplace</Link>
           </li>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link href="/connect-wallet">Connect Wallet</Link>
-          </li>
-          <div className={classes.actions}>
-            <Button link={signupLink}>
-              <span className={classes.icon}>
-                <UserIcon />
-              </span>
-              <span>Sign Up</span>
-            </Button>
-          </div>
+          {!session && !loading && (
+            <li>
+              <Link href="/auth">Login</Link>
+            </li>
+          )}
+          {session && (
+            <li>
+              <Link href="/profile">User Dashboard</Link>
+            </li>
+          )}
+          {session && (
+            <li>
+              <Link href="/connect-wallet">Connect Wallet</Link>
+            </li>
+          )}
+          {session && (
+            <li>
+              <button onCLick={logoutHandler}>Logout</button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
@@ -39,3 +48,4 @@ function MainNavigation() {
 }
 
 export default MainNavigation;
+

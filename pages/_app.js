@@ -2,11 +2,14 @@ import Head from "next/head";
 
 import Layout from "../components/layout/layout";
 import { NotificationContextProvider } from "../store/notification-context";
+import { SessionProvider } from 'next-auth/react';
+
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps} }) {
   return (
     <NotificationContextProvider>
+      <SessionProvider session = {session}>
       <Layout>
         <Head>
           <title>Partage NFTs</title>
@@ -21,6 +24,7 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <Component {...pageProps} />
       </Layout>
+      </SessionProvider>
     </NotificationContextProvider>
   );
 }
