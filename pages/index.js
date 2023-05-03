@@ -12,53 +12,56 @@ Partage's Homepage layer:
 7) Footer
 */
 
-import { Fragment } from "react";
-import { useRef, useState } from "react";
+import { Fragment } from 'react'
+import { useRef, useState } from 'react'
 
-import Head from "next/head";
+import Head from 'next/head'
 
-import { getHighlightedNfts, getHighlightedProviders } from "../helpers/api-util";
+import {
+  getHighlightedNfts,
+  getHighlightedProviders,
+} from '../helpers/api-util'
 
-import Hero from "../components/hero/hero";
-import HowTo from "../components/how-to/how-to";
-import TrendingNFTs from "../components/trending-nfts/trending-nfts";
-import TopProviders from "../components/top-providers/top-providers";
+import Home from '@/modules/home'
+import HowTo from '../components/how-to/how-to'
+import TrendingNFTs from '../components/trending-nfts/trending-nfts'
+import TopProviders from '../components/top-providers/top-providers'
 
-import NewsletterRegistration from "../components/input/newsletter-registration";
+import NewsletterRegistration from '../components/input/newsletter-registration'
 
 function HomePage(props) {
-  const [emailItems, setEmailItems] = useState([]);
+  const [emailItems, setEmailItems] = useState([])
 
-  const emailInputRef = useRef();
+  const emailInputRef = useRef()
 
   function submitFormHandler(nft) {
-    nft.preventDefault();
+    nft.preventDefault()
 
-    const enteredEmail = emailInputRef.current.value;
+    const enteredEmail = emailInputRef.current.value
 
-    const reqBody = { email: enteredEmail };
+    const reqBody = { email: enteredEmail }
 
     // send push entered email request to api
-    fetch("/api/emails", {
-      method: "POST",
+    fetch('/api/emails', {
+      method: 'POST',
       body: JSON.stringify(reqBody),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
       // extracting the response data
       .then((response) => response.json())
       // log in the data
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
   }
 
   function loadEmailHandler() {
     // send a get request by passing url
-    fetch("/api/emails")
+    fetch('/api/emails')
       .then((response) => response.json())
       .then((data) => {
-        setEmailItems(data.email);
-      });
+        setEmailItems(data.email)
+      })
   }
 
   return (
@@ -70,18 +73,18 @@ function HomePage(props) {
           content="Shared NFT Utilities built on the Bitcoin blockchain."
         />
       </Head>
-      <Hero />
+      <Home />
       <HowTo />
       <TopProviders providers={props.providers} />
       <TrendingNFTs nfts={props.nfts} />
       <NewsletterRegistration />
     </Fragment>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const highlightedNfts = await getHighlightedNfts();
-  const highlightedProviders = await getHighlightedProviders();
+  const highlightedNfts = await getHighlightedNfts()
+  const highlightedProviders = await getHighlightedProviders()
 
   return {
     props: {
@@ -90,7 +93,7 @@ export async function getStaticProps() {
     },
     // update page every 10 min
     revalidate: 1800,
-  };
+  }
 }
 
-export default HomePage;
+export default HomePage

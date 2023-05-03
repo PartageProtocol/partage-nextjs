@@ -1,17 +1,18 @@
-import Head from "next/head";
+import Head from 'next/head'
 
-import Layout from "../components/layout/layout";
-import { NotificationContextProvider } from "../store/notification-context";
-import { SessionProvider } from "next-auth/react";
-import { Space_Mono, Work_Sans } from "next/font/google";
+import Layout from '../components/layout/layout'
+import { NotificationContextProvider } from '../store/notification-context'
+import { SessionProvider } from 'next-auth/react'
+import { Space_Mono, Work_Sans } from 'next/font/google'
 
-import "../styles/globals.css";
+import '../styles/globals.css'
 
-const workSans = Work_Sans({ subsets: ["latin"], variable: "--workSans-font" });
-const spaceMono = Work_Sans({
-  subsets: ["latin"],
-  variable: "--spaceMono-font",
-});
+const workSans = Work_Sans({ subsets: ['latin'], variable: '--workSans-font' })
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--spaceMono-font',
+})
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -35,7 +36,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         </main>
       </SessionProvider>
     </NotificationContextProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
