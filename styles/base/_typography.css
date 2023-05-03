@@ -1,0 +1,52 @@
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
+  font-weight: 700;
+}
+
+h1,
+.h1 {
+  font-size: 67px;
+  line-height: 1.1;
+}
+
+h2,
+.h2 {
+  font-size: 51px;
+  line-height: 1.1;
+}
+
+h3,
+.h3 {
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+h4,
+.h4 {
+  font-size: 28px;
+  line-height: 1.4;
+}
+
+h5,
+.h5 {
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.caption {
+  font-size: 0.75rem;
+  line-height: 1.1;
+}

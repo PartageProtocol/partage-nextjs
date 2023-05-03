@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  background-color: var(--grey-100);
+  color: var(--white);
+}
+
+main {
+  font-family: var(--workSans-font), sans-serif;
+}

@@ -2,15 +2,21 @@ import Head from "next/head";
 
 import Layout from "../components/layout/layout";
 import { NotificationContextProvider } from "../store/notification-context";
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react";
+import { Space_Mono, Work_Sans } from "next/font/google";
 
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps: { session, ...pageProps} }) {
+const workSans = Work_Sans({ subsets: ["latin"], variable: "--workSans-font" });
+const spaceMono = Work_Sans({
+  subsets: ["latin"],
+  variable: "--spaceMono-font",
+});
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <NotificationContextProvider>
-      <SessionProvider session = {session}>
-      <Layout>
+      <SessionProvider session={session}>
         <Head>
           <title>Partage NFTs</title>
           <meta
@@ -22,8 +28,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps} }) {
             content="initial-scale=1.0, width=device-width"
           />
         </Head>
-        <Component {...pageProps} />
-      </Layout>
+        <main className={`${workSans.variable} ${spaceMono.variable}`}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </main>
       </SessionProvider>
     </NotificationContextProvider>
   );
