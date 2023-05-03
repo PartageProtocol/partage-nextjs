@@ -23,7 +23,6 @@ import {
 } from '../helpers/api-util'
 
 import Home from '@/modules/home'
-import HowTo from '../components/how-to/how-to'
 import TrendingNFTs from '../components/trending-nfts/trending-nfts'
 import TopProviders from '../components/top-providers/top-providers'
 
@@ -74,7 +73,6 @@ function HomePage(props) {
         />
       </Head>
       <Home />
-      <HowTo />
       <TopProviders providers={props.providers} />
       <TrendingNFTs nfts={props.nfts} />
       <NewsletterRegistration />

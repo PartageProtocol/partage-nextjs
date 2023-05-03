@@ -3,7 +3,6 @@
   grid-template-columns: 1fr;
   align-items: flex-start;
   gap: 40px;
-  padding: 40px 0;
 }
 
 .hero__content h1 {
@@ -21,8 +20,6 @@
   border-radius: 20px;
 }
 
-.hero__results {
-}
 .hero__results--desktop {
   display: none;
 }
