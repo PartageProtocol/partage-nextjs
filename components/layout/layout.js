@@ -1,14 +1,14 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext } from 'react'
 
-import MainNavigation from "./main-navigation";
-import MainFooter from "./footer";
-import Notification from "../ui/notification";
-import NotificationContext from "../../store/notification-context";
+import MainNavigation from './main-navigation'
+import Notification from '../ui/notification'
+import NotificationContext from '../../store/notification-context'
+import Footer from 'components/app/footer'
 
 function Layout(props) {
-  const notificationCtx = useContext(NotificationContext);
+  const notificationCtx = useContext(NotificationContext)
 
-  const activeNotification = notificationCtx.notification;
+  const activeNotification = notificationCtx.notification
 
   return (
     <Fragment>
@@ -21,9 +21,9 @@ function Layout(props) {
           status={activeNotification.status}
         />
       )}
-      <MainFooter />
+      <Footer />
     </Fragment>
-  );
+  )
 }
 
-export default Layout;
+export default Layout
