@@ -3,12 +3,11 @@
 @import url(./base/_typography.css);
 @import url(./base/_page.css);
 
-
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-
 
 body {
   --color-grey-2: #2b2b2b;
@@ -20,18 +19,9 @@ body {
   --color-purple-light: #b100cc;
   --color-purple-deep: #6c01cd;
 
-
   margin: 0;
 }
 
-
-
-h1,
-h2,
-h3 {
-  font-family: 'Oswald', 'Roboto', sans-serif;
-  color: white;
-}
 
 ul {
   list-style: none;
