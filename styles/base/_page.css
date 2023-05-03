@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: var(--grey-100);
+  background-color: var(--gray-100);
   color: var(--white);
 }
 
@@ -18,16 +18,25 @@ main {
   /* 1280px */
 }
 
-@media screen and (min-width: 768px) {
+.section-y {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 768px) {
   .container {
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media (min-width: 1200px) {
   .container {
     padding-left: clamp(4rem, 8vw, 1.25rem);
     padding-right: clamp(4rem, 8vw, 1.25rem);
+  }
+  .section-y {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
