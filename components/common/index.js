@@ -1,4 +1,5 @@
-import GuideCard from './guide-card'
+import CardGuide from './card-guide'
 import CardNft from './card-nft'
+import CardProvider from './card-provider'
 
-export { GuideCard, CardNft }
+export { CardGuide, CardNft, CardProvider }

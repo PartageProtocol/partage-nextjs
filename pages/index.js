@@ -23,8 +23,6 @@ import {
 } from '../helpers/api-util'
 
 import Home from '@/modules/home'
-import TopProviders from '../components/top-providers/top-providers'
-
 import NewsletterRegistration from '../components/input/newsletter-registration'
 
 const HomePage = ({ nfts, providers }) => {
@@ -72,7 +70,6 @@ const HomePage = ({ nfts, providers }) => {
         />
       </Head>
       <Home nfts={nfts} providers={providers} />
-      <TopProviders providers={providers} />
       <NewsletterRegistration />
     </Fragment>
   )
