@@ -1,6 +1,6 @@
 import styles from './guide-card.module.css'
 
-const GuideCard = ({ img, title, text }) => {
+const CardGuide = ({ img, title, text }) => {
   return (
     <div className={styles.card}>
       <figure className={styles.card__image}>
@@ -14,4 +14,4 @@ const GuideCard = ({ img, title, text }) => {
   )
 }
 
-export default GuideCard
+export default CardGuide

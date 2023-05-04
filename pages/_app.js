@@ -1,12 +1,16 @@
 import Head from 'next/head'
-import { Space_Mono, Work_Sans } from 'next/font/google'
+import { Space_Mono, Work_Sans, Roboto_Mono } from 'next/font/google'
 import { SessionProvider } from 'next-auth/react'
 import Layout from 'components/layout/layout'
 import { NotificationContextProvider } from 'store/notification-context'
 import 'styles/globals.css'
 
-const workSans = Work_Sans({ subsets: ['latin'], variable: '--workSans-font' })
-const spaceMono = Space_Mono({
+const workSans = Work_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--workSans-font',
+})
+const spaceMono = Roboto_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--spaceMono-font',
