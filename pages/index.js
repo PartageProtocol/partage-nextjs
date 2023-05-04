@@ -71,7 +71,7 @@ const HomePage = ({ nfts, providers }) => {
           content="Shared NFT Utilities, built on Bitcoin."
         />
       </Head>
-      <Home nfts={nfts} />
+      <Home nfts={nfts} providers={providers} />
       <TopProviders providers={providers} />
       <NewsletterRegistration />
     </Fragment>
