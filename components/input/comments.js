@@ -15,6 +15,7 @@ function Comments(props) {
   const [isFetchingComments, setIsFetchingComments] = useState(false);
 
   useEffect(() => {
+    // if show comment is true, fetch and render them
     if (showComments) {
       setIsFetchingComments(true);
       fetch("/api/comments/" + nftId)

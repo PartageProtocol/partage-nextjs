@@ -7,8 +7,9 @@ function NewsletterRegistration() {
   const emailInputRef = useRef();
   const notificationCtx = useContext(NotificationContext);
 
-  function registrationHandler(nft) {
-    nft.preventDefault();
+  function registrationHandler(event) {
+    event.preventDefault();
+    
     const enteredEmail = emailInputRef.current.value;
 
     notificationCtx.showNotification({

@@ -12,10 +12,11 @@ async function handler(req, res) {
     return;
   }
 
+  // post event through API
   if (req.method === "POST") {
-    //add server-side validation
+    // collect client-side data
     const { email, name, text } = req.body;
-
+    //add server-side validation
     if (
       !email.includes("@") ||
       !name ||
@@ -47,6 +48,7 @@ async function handler(req, res) {
     }
   }
 
+  // get comments through API
   if (req.method === "GET") {
     try {
       const documents = await getAllDocuments(client, "comments", { _id: -1 });
