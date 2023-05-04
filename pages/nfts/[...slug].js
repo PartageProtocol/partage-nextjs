@@ -68,3 +68,5 @@ function FilteredNftsPage() {
     </Fragment>
   )
 }
+
+export default FilteredNftsPage;
