@@ -13,27 +13,27 @@ h5,
 }
 
 h1 {
-  font-size: 67px;
+  font-size: var(--heading-1);
   line-height: 1.1;
 }
 
 h2 {
-  font-size: 51px;
+  font-size: var(--heading-2);
   line-height: 1.1;
 }
 
 h3 {
-  font-size: 38px;
+  font-size: var(--heading-3);
   line-height: 1.2;
 }
 
 h4 {
-  font-size: 28px;
+  font-size: var(--heading-4);
   line-height: 1.4;
 }
 
 h5 {
-  font-size: 22px;
+  font-size: var(--heading-5);
   line-height: 1.6;
 }
 

@@ -23,12 +23,11 @@ import {
 } from '../helpers/api-util'
 
 import Home from '@/modules/home'
-import TrendingNFTs from '../components/trending-nfts/trending-nfts'
 import TopProviders from '../components/top-providers/top-providers'
 
 import NewsletterRegistration from '../components/input/newsletter-registration'
 
-function HomePage(props) {
+const HomePage = ({ nfts, providers }) => {
   const [emailItems, setEmailItems] = useState([])
 
   const emailInputRef = useRef()
@@ -72,9 +71,8 @@ function HomePage(props) {
           content="Shared NFT Utilities, built on Bitcoin."
         />
       </Head>
-      <Home />
-      <TopProviders providers={props.providers} />
-      <TrendingNFTs nfts={props.nfts} />
+      <Home nfts={nfts} />
+      <TopProviders providers={providers} />
       <NewsletterRegistration />
     </Fragment>
   )
