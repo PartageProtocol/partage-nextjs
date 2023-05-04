@@ -69,7 +69,7 @@ function HomePage(props) {
         <title>Partage NFTs</title>
         <meta
           name="description"
-          content="Shared NFT Utilities built on the Bitcoin blockchain."
+          content="Shared NFT Utilities, built on Bitcoin."
         />
       </Head>
       <Home />

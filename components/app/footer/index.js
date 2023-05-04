@@ -19,10 +19,10 @@ const Footer = () => {
               </Link>
             </div>
 
-            <p>NFT marketplace UI created with Anima for Figma.</p>
+            <p>Shared NFT Utilities, built on Bitcoin</p>
 
             <div className={styles.footer__social__community}>
-              <p>Join our community</p>
+              <p>Join our social medias</p>
 
               <ul>
                 <li>
