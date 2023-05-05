@@ -12,18 +12,16 @@ Partage's Homepage layer:
 7) Footer
 */
 
-import { Fragment } from 'react'
-import { useRef, useState } from 'react'
+import { useRef, useState, Fragment } from 'react'
 
 import Head from 'next/head'
+
+import Home from '@/modules/home'
 
 import {
   getHighlightedNfts,
   getHighlightedProviders,
 } from '../helpers/api-util'
-
-import Home from '@/modules/home'
-import NewsletterRegistration from '../components/input/newsletter-registration'
 
 const HomePage = ({ nfts, providers }) => {
   const [emailItems, setEmailItems] = useState([])
@@ -70,7 +68,6 @@ const HomePage = ({ nfts, providers }) => {
         />
       </Head>
       <Home nfts={nfts} providers={providers} />
-      <NewsletterRegistration />
     </Fragment>
   )
 }
