@@ -6,7 +6,6 @@ function CategoryIcon() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-6 h-6"
     >
       <path
         strokeLinecap="round"
@@ -19,7 +18,7 @@ function CategoryIcon() {
         d="M6 6h.008v.008H6V6z"
       />
     </svg>
-  );
+  )
 }
 
-export default CategoryIcon;
+export default CategoryIcon
