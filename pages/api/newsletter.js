@@ -5,7 +5,7 @@ async function handler(req, res) {
   if (req.method === "POST") {
     const userEmail = req.body.email;
 
-    // check email inpput
+    // check email ipput
     if (!userEmail || !userEmail.includes("@")) {
       res.status(422).json({ message: "Invalid email address." });
       return;
