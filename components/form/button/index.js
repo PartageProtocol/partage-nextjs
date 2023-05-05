@@ -19,7 +19,7 @@ const Button = ({
           styles.btn,
           {
             [styles['btn--primary']]: variant === 'primary',
-            [styles['btn--secondary']]: variant === 'secondary',
+            [styles['btn--outline']]: variant === 'outline',
           },
           className
         )}
@@ -36,7 +36,7 @@ const Button = ({
         styles.btn,
         {
           [styles['btn--primary']]: variant === 'primary',
-          [styles['btn--secondary']]: variant === 'secondary',
+          [styles['btn--outline']]: variant === 'outline',
         },
         className
       )}

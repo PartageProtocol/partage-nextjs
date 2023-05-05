@@ -1,16 +1,17 @@
 .btn {
   padding: 12px 20px;
-  text-decoration: none;
-  background-color: var(--purple);
-  border: 2px solid;
-  border-radius: 20px;
+  font-weight: 600;
+  line-height: 1.5;
   color: var(--white);
+  font-size: var(--base-size);
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  font-size: var(--base-size);
-  line-height: 1.5;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: var(--purple);
   transition: all 0.25s ease-in;
   cursor: pointer;
 }
@@ -26,25 +27,25 @@
 }
 .btn--primary:hover,
 .btn--primary:active {
-  background-color: transparent;
+  filter: brightness(0.8);
 }
 .btn--primary:hover .btn__icon,
 .btn--primary:active .btn__icon {
-  color: var(--purple);
+  /* color: var(--purple); */
 }
 
-.btn--secondary {
+.btn--outline {
   background-color: transparent;
   border-color: var(--purple);
 }
-.btn--secondary .btn__icon {
+.btn--outline .btn__icon {
   color: var(--purple);
 }
-.btn--secondary:hover,
-.btn--secondary:active {
+.btn--outline:hover,
+.btn--outline:active {
   background-color: var(--purple);
 }
-.btn--secondary:hover .btn__icon,
-.btn--secondary:active .btn__icon {
+.btn--outline:hover .btn__icon,
+.btn--outline:active .btn__icon {
   color: var(--white);
 }
