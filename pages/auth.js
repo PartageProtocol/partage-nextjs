@@ -1,9 +1,7 @@
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
-
 import Auth from '@/modules/auth'
-import AuthForm from 'components/auth/auth-form'
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -23,7 +21,7 @@ const AuthPage = () => {
     return <p>Loading...</p>
   }
 
-  return <Auth /> 
+  return <Auth />
 }
 
 export default AuthPage
