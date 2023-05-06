@@ -9,11 +9,13 @@ const workSans = Work_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--workSans-font',
+  display: 'swap',
 })
 const spaceMono = Space_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--spaceMono-font',
+  display: 'swap',
 })
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {

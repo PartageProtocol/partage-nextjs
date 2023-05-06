@@ -51,6 +51,9 @@ p {
 .h3 {
   font-size: var(--heading-4);
 }
+.h4 {
+  font-size: var(--heading-5);
+}
 .subheading {
   font-size: var(--base-size);
 }
@@ -64,6 +67,9 @@ p {
   }
   .h3 {
     font-size: var(--heading-3);
+  }
+  .h4 {
+    font-size: var(--heading-4);
   }
   .subheading {
     font-size: var(--heading-5);
