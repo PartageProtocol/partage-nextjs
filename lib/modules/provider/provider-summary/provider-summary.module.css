@@ -76,11 +76,6 @@
   gap: 12px;
 }
 
-@media (max-width: 767px) {
-  .provider__summary h1 {
-    font-size: var(--heading-4);
-  }
-}
 @media (min-width: 768px) {
   .provider__image {
     height: 420px;

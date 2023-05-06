@@ -3,9 +3,9 @@ import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import { getAllNfts } from '../../helpers/api-util'
-import NftList from '../../components/nfts/nft-list'
-import NftsSearch from '../../components/nfts/nfts-search'
+import { getAllNfts } from 'helpers/api-util'
+import NftList from 'components/nfts/nft-list'
+import NftsSearch from 'components/nfts/nfts-search'
 
 function AllNftsPage(props) {
   const router = useRouter()

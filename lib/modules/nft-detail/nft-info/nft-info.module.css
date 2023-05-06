@@ -27,12 +27,6 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 767px) {
-  .nft h1 {
-    font-size: var(--heading-4);
-  }
-}
-
 @media (min-width: 768px) {
   .nft__label {
     margin-top: 30px;
