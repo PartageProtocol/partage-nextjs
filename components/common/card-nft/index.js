@@ -10,31 +10,25 @@ const CardNft = (props) => {
 
   return (
     <div className={styles.nft}>
-      <div className={styles.nft__image}>
-        <Link href={exploreLink}>
+      <Link href={exploreLink}>
+        <div className={styles.nft__image}>
           <Image
             src={'/' + image}
             alt={name}
             width={250}
             height={250}
             className={styles.nft__avatar}
+            style={{ objectFit: 'cover' }}
           />
-        </Link>
-      </div>
-
-      <div className={styles.nft__content}>
-        <Link href={exploreLink}>
-          <h5>{name}</h5>
-        </Link>
-        <div className={styles.nft__provider}>
-          <ProviderIcon />
-          <p>{provider}</p>
         </div>
-        {/* <div className={styles.category}>
-            <CategoryIcon />
-            <h3>{category}</h3>
-          </div> */}
-      </div>
+        <div className={styles.nft__content}>
+          <h5>{name}</h5>
+          <div className={styles.nft__provider}>
+            <ProviderIcon />
+            <p>{provider}</p>
+          </div>
+        </div>
+      </Link>
     </div>
   )
 }

@@ -1,16 +1,13 @@
 .nft {
-  border-radius: 20px;
-  background-color: var(--gray-100);
 }
 
 .nft__image {
+  margin-bottom: 15px;
   position: relative;
   overflow: hidden;
-  height: 240px;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px;
 }
 .nft__image a {
-  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -21,15 +18,14 @@
   transform: scale(1);
   transition: 0.4s ease-in-out;
 }
-.nft:hover .nft__avatar {
+.nft__avatar:hover {
   transform: scale(1.1);
 }
 
-.nft__content {
-  padding: 20px;
-}
-.nft__content h5 {
-  margin-bottom: 5px;
+.nft__content a {
+  color: var(--white);
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .nft__provider {
@@ -40,10 +36,4 @@
 .nft__provider svg {
   width: 24px;
   height: 24px;
-}
-
-@media (min-width: 768) {
-  .nft__image {
-    height: 280px;
-  }
 }
