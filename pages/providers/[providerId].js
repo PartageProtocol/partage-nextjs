@@ -1,22 +1,20 @@
 // the Utility Provider detail page
-import { Fragment } from 'react'
 import Head from 'next/head'
+import { Fragment } from 'react'
+
+import ProviderSummary from 'components/provider-detail/provider-summary'
+import ProviderLogistics from 'components/provider-detail/provider-logistics'
+import ProviderContent from 'components/provider-detail/provider-content'
+import NftList from 'components/nfts/nft-list'
 
 import {
   getAllProviders,
   getProviderById,
   getProviderNfts,
-} from '../../helpers/api-util'
-import ProviderSummary from '../../components/provider-detail/provider-summary'
-import ProviderLogistics from '../../components/provider-detail/provider-logistics'
-import ProviderContent from '../../components/provider-detail/provider-content'
-
-import NftList from '../../components/nfts/nft-list'
+} from 'helpers/api-util'
 
 // builds a provider page from the properties of a selected provider id
-function ProviderDetailPage(props) {
-  const provider = props.selectedProvider
-
+function ProviderDetailPage({ provider, providerNfts }) {
   if (!provider) {
     return (
       <div className="center">
@@ -24,6 +22,8 @@ function ProviderDetailPage(props) {
       </div>
     )
   }
+
+  console.log(provider, providerNfts)
 
   return (
     <Fragment>
@@ -42,7 +42,7 @@ function ProviderDetailPage(props) {
       </ProviderContent>
       <h2>Tab Bar: Created {provider.data} NFTs</h2>
       <h1>NFTs from this provider</h1>
-      <NftList nfts={props.nfts} />
+      <NftList nfts={providerNfts} />
     </Fragment>
   )
 }
@@ -56,7 +56,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      selectedProvider: provider,
+      provider,
       providerNfts: providerNfts,
     },
     revalidate: 1800,
