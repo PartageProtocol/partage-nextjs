@@ -2,14 +2,13 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import NftList from 'components/nfts/nft-list'
-
+import Provider from '@/modules/provider'
+import NftList from 'components/nft-list'
 import {
   getAllProviders,
   getProviderById,
   getProviderNfts,
 } from 'helpers/api-util'
-import Provider from '@/modules/provider'
 
 // builds a provider page from the properties of a selected provider id
 function ProviderDetailPage({ provider, providerNfts }) {

@@ -1,9 +1,9 @@
 // this is a list of all NFTs
-import NftItem from "./nft-item";
-import classes from './nft-list.module.css';
+import NftItem from './nft-item'
+import classes from './nft-list.module.css'
 
 function NftList(props) {
-  const { nfts } = props;
+  const { nfts } = props
 
   return (
     <ul className={classes.list}>
@@ -19,7 +19,7 @@ function NftList(props) {
         />
       ))}
     </ul>
-  );
+  )
 }
 
-export default NftList;
+export default NftList
