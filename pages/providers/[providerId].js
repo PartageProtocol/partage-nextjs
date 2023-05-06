@@ -2,7 +2,6 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import ProviderSummary from 'components/provider-detail/provider-summary'
 import ProviderLogistics from 'components/provider-detail/provider-logistics'
 import ProviderContent from 'components/provider-detail/provider-content'
 import NftList from 'components/nfts/nft-list'
@@ -12,6 +11,7 @@ import {
   getProviderById,
   getProviderNfts,
 } from 'helpers/api-util'
+import Provider from '@/modules/provider'
 
 // builds a provider page from the properties of a selected provider id
 function ProviderDetailPage({ provider, providerNfts }) {
@@ -31,7 +31,9 @@ function ProviderDetailPage({ provider, providerNfts }) {
         <title>{provider.name}</title>
         <meta name="description" content={provider.bio} />
       </Head>
-      <ProviderSummary title={provider.name} />
+
+      <Provider provider={provider} />
+
       <ProviderLogistics
         data={provider.data}
         image={provider.image}
