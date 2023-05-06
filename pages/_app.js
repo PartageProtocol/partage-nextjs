@@ -10,7 +10,7 @@ const workSans = Work_Sans({
   weight: ['300', '400', '500', '600', '700'],
   variable: '--workSans-font',
 })
-const spaceMono = Roboto_Mono({
+const spaceMono = Space_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--spaceMono-font',

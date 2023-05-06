@@ -43,7 +43,7 @@ p {
 }
 
 .h1 {
-  --heading-1: 67px;
+  --heading-1: var(--heading-1);
 }
 .h2 {
   font-size: var(--heading-3);
