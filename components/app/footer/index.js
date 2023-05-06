@@ -55,7 +55,7 @@ const Footer = () => {
     //     status: 'success',
     //   })
     // }
-    fetch('/api/footer', {
+    fetch('/api/newsletter', {
       method: 'POST',
       body: JSON.stringify({ email: data.email }),
       headers: {
