@@ -3,17 +3,14 @@ import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
+import MarketPlace from '@/modules/marketplace'
 import { getAllNfts } from 'helpers/api-util'
-import NftList from 'components/nfts/nft-list'
-import NftsSearch from 'components/nfts/nfts-search'
 
-function AllNftsPage(props) {
+const NftsPage = ({ nfts }) => {
   const router = useRouter()
-  // call all nfts with properties into function
-  const { nfts } = props
 
   // find the nft queried in browser
-  function findNftsHandler(category, provider) {
+  const handleFindNfts = (category, provider) => {
     const fullPath = `/nfts/${category}/${provider}`
     router.push(fullPath)
   }
@@ -27,8 +24,8 @@ function AllNftsPage(props) {
           content="Shared NFT Utilities built on the Bitcoin blockchain."
         />
       </Head>
-      <NftsSearch onSearch={findNftsHandler} />
-      <NftList nfts={nfts} />
+
+      <MarketPlace nfts={nfts} handleSearch={handleFindNfts} />
     </Fragment>
   )
 }
@@ -39,10 +36,10 @@ export async function getStaticProps() {
 
   return {
     props: {
-      nfts: nfts,
+      nfts,
     },
     revalidate: 60,
   }
 }
 
-export default AllNftsPage
+export default NftsPage
