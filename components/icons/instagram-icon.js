@@ -1,4 +1,4 @@
-function InstagramIcon() {
+function InstagramIcon({ size = 32 }) {
   return (
     <svg
       width="33"
@@ -6,6 +6,11 @@ function InstagramIcon() {
       viewBox="0 0 33 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{
+        width: `${size}px`,
+        height: 'auto',
+        transition: 'all 0.25s ease-in',
+      }}
     >
       <path
         fillRule="evenodd"
@@ -59,7 +64,7 @@ function InstagramIcon() {
         </linearGradient>
       </defs>
     </svg>
-  );
+  )
 }
 
-export default InstagramIcon;
+export default InstagramIcon

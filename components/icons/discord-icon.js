@@ -1,4 +1,4 @@
-function DiscordIcon() {
+function DiscordIcon({ size = 32 }) {
   return (
     <svg
       width="33"
@@ -6,6 +6,11 @@ function DiscordIcon() {
       viewBox="0 0 33 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{
+        width: `${size}px`,
+        height: 'auto',
+        transition: 'all 0.25s ease-in',
+      }}
     >
       <path
         d="M12.293 19.5C13.1214 19.5 13.793 18.8284 13.793 18C13.793 17.1716 13.1214 16.5 12.293 16.5C11.4645 16.5 10.793 17.1716 10.793 18C10.793 18.8284 11.4645 19.5 12.293 19.5Z"
@@ -72,7 +77,7 @@ function DiscordIcon() {
         fill="#377DF7"
       />
     </svg>
-  );
+  )
 }
 
-export default DiscordIcon;
+export default DiscordIcon

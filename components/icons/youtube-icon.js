@@ -1,4 +1,4 @@
-function YoutubeIcon() {
+function YoutubeIcon({ size = 32 }) {
   return (
     <svg
       width="33"
@@ -6,6 +6,11 @@ function YoutubeIcon() {
       viewBox="0 0 33 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{
+        width: `${size}px`,
+        height: 'auto',
+        transition: 'all 0.25s ease-in',
+      }}
     >
       <path
         fillRule="evenodd"
@@ -20,7 +25,7 @@ function YoutubeIcon() {
         fill="#EB5757"
       />
     </svg>
-  );
+  )
 }
 
-export default YoutubeIcon;
+export default YoutubeIcon
