@@ -32,13 +32,6 @@
   grid-template-columns: auto auto;
   gap: 30px;
 }
-.hero__data__item h5 {
-  font-weight: 700;
-  font-family: var(--spaceMono-font), monospace;
-}
-.hero__data__item p {
-  text-transform: capitalize;
-}
 
 @media (min-width: 768px) {
   .hero {
@@ -77,11 +70,5 @@
   .hero__results,
   .hero__data {
     margin-top: 30px;
-  }
-  .hero__data__item h5 {
-    font-size: var(--heading-4);
-  }
-  .hero__data__item p {
-    font-size: var(--heading-5);
   }
 }
