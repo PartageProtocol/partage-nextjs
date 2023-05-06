@@ -2,8 +2,6 @@
 import Head from 'next/head'
 import { Fragment } from 'react'
 
-import ProviderLogistics from 'components/provider-detail/provider-logistics'
-import ProviderContent from 'components/provider-detail/provider-content'
 import NftList from 'components/nfts/nft-list'
 
 import {
@@ -23,8 +21,6 @@ function ProviderDetailPage({ provider, providerNfts }) {
     )
   }
 
-  console.log(provider, providerNfts)
-
   return (
     <Fragment>
       <Head>
@@ -34,14 +30,6 @@ function ProviderDetailPage({ provider, providerNfts }) {
 
       <Provider provider={provider} />
 
-      <ProviderLogistics
-        data={provider.data}
-        image={provider.image}
-        imageAlt={provider.name}
-      />
-      <ProviderContent>
-        <p>{provider.bio}</p>
-      </ProviderContent>
       <h2>Tab Bar: Created {provider.data} NFTs</h2>
       <h1>NFTs from this provider</h1>
       <NftList nfts={providerNfts} />
