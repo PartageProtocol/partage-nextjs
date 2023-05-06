@@ -1,12 +1,91 @@
+import { useContext } from 'react'
 import Link from 'next/link'
-import DiscordIcon from 'components/icons/discord-icon'
-import YoutubeIcon from 'components/icons/youtube-icon'
-import TwitterIcon from 'components/icons/twitter-icon'
-import InstagramIcon from 'components/icons/instagram-icon'
+import { useForm } from 'react-hook-form'
+import { Button } from 'components/form'
+import {
+  DiscordIcon,
+  InstagramIcon,
+  TwitterIcon,
+  MailIcon,
+  YoutubeIcon,
+} from 'components/icons'
+import NotificationContext from 'store/notification-context'
 import styles from './footer.module.css'
 
 const Footer = () => {
   const year = new Date().getFullYear()
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm()
+  const notificationCtx = useContext(NotificationContext)
+
+  const onSubmit = (data) => {
+    notificationCtx.showNotification({
+      title: 'Signing up...',
+      message: 'Registering for footer.',
+      status: 'pending',
+    })
+
+    // try {
+    //   const res = await fetch('/api/footer', {
+    //     method: 'POST',
+    //     body: JSON.stringify({ email: data.email }),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   })
+    //   if (!res.ok) {
+    //     console.log(res)
+
+    //     throw data.message || 'Something went wrong.'
+    //   }
+    // } catch (error) {
+    //   notificationCtx.showNotification({
+    //     title: 'Error!',
+    //     message: error.message || 'Something went wrong.',
+    //     status: 'error',
+    //   })
+    // } finally {
+    //   notificationCtx.showNotification({
+    //     title: 'Success!',
+    //     message: 'Successfully registered for footer.',
+    //     status: 'success',
+    //   })
+    // }
+    fetch('/api/footer', {
+      method: 'POST',
+      body: JSON.stringify({ email: data.email }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+
+        return response.json().then((data) => {
+          throw new Error(data.message || 'Something went wrong.')
+        })
+      })
+      .catch((error) => {
+        notificationCtx.showNotification({
+          title: 'Error!',
+          message: error.message || 'Something went wrong.',
+          status: 'error',
+        })
+      })
+      .finally((data) => {
+        notificationCtx.showNotification({
+          title: 'Success!',
+          message: 'Successfully registered for footer.',
+          status: 'success',
+        })
+      })
+  }
 
   return (
     <footer className={styles.footer}>
@@ -83,8 +162,32 @@ const Footer = () => {
 
           <div className={styles.footer__subscribe}>
             <h3>Join Our Weekly Digest</h3>
-
             <p>Get exclusive promotions & updates straight to your inbox.</p>
+
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className={styles.footer__form}
+            >
+              <div className={styles.footer__form__group}>
+                <input
+                  type="email"
+                  placeholder="Enter Your Email Address"
+                  aria-label="Your email"
+                  {...register('email', {
+                    required: 'This is required',
+                    pattern: {
+                      value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                      message: 'Email is not correct',
+                    },
+                  })}
+                />
+                <Button
+                  label="Subscribe"
+                  icon={<MailIcon size={20} />}
+                  className={styles.footer__form__cta}
+                />
+              </div>
+            </form>
           </div>
         </div>
 
