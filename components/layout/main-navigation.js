@@ -27,6 +27,9 @@ const MainNavigation = () => {
             <li>
               <Link href="/nfts">Marketplace</Link>
             </li>
+            <li>
+              <Link href="https://medium.com/partage-btc">White Paper</Link>
+            </li>
             {!session && !loading && (
               <li>
                 <Link href="/auth">Login</Link>
