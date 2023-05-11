@@ -2,7 +2,7 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 
-import NftLogistics from 'components/nft-detail/nft-logistics'
+import Button from '../../components/ui/button'
 import Comments from 'components/input/comments'
 import NftDetail from '@/modules/nft-detail'
 
@@ -23,8 +23,10 @@ const NftDetailPage = ({ nft }) => {
         <title>{nft.name}</title>
         <meta name="description" content={nft.description} />
       </Head>
-
       <NftDetail nft={nft} />
+      <div className="center">
+        <Button link="/">Buy</Button>
+      </div>
       <Comments nftId={nft.id} />
     </Fragment>
   )
