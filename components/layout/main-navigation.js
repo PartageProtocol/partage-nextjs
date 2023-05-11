@@ -6,7 +6,10 @@ import BurgerIcon from 'components/icons/burger-icon'
 const MainNavigation = () => {
   const { data: session, status } = useSession()
   const loading = status === 'loading'
-
+  
+  const loginHandler = () => {
+    return "/auth"
+  }
   const logoutHandler = () => {
     signOut()
   }
@@ -31,9 +34,9 @@ const MainNavigation = () => {
               <Link href="https://medium.com/partage-btc">White Paper</Link>
             </li>
             {!session && !loading && (
-              <li>
-                <Link href="/auth">Login</Link>
-              </li>
+              <a href="/auth">
+                <button>Login</button>
+              </a>
             )}
             {session && (
               <li>
