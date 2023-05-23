@@ -28,33 +28,6 @@ const Footer = () => {
       message: 'Registering for footer.',
       status: 'pending',
     })
-
-    // try {
-    //   const res = await fetch('/api/footer', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ email: data.email }),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   })
-    //   if (!res.ok) {
-    //     console.log(res)
-
-    //     throw data.message || 'Something went wrong.'
-    //   }
-    // } catch (error) {
-    //   notificationCtx.showNotification({
-    //     title: 'Error!',
-    //     message: error.message || 'Something went wrong.',
-    //     status: 'error',
-    //   })
-    // } finally {
-    //   notificationCtx.showNotification({
-    //     title: 'Success!',
-    //     message: 'Successfully registered for footer.',
-    //     status: 'success',
-    //   })
-    // }
     fetch('/api/newsletter', {
       method: 'POST',
       body: JSON.stringify({ email: data.email }),
@@ -149,13 +122,13 @@ const Footer = () => {
 
             <ul>
               <li>
-                <a href="/">Marketplace</a>
+                <a href="/nfts">Marketplace</a>
               </li>
               <li>
-                <a href="/">Rankings</a>
+                <a href="https://medium.com/partage-btc/partages-white-paper-347674063de7">White Paper</a>
               </li>
               <li>
-                <a href="/">Connect a wallet</a>
+                <a href="/auth">Create account</a>
               </li>
             </ul>
           </div>

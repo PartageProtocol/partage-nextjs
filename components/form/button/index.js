@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import clsx from 'clsx'
 import styles from './button.module.css'
+import clsx from 'clsx'
 
 const Button = ({
   variant = 'primary',

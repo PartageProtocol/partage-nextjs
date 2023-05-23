@@ -10,7 +10,6 @@ import BurgerIcon from 'components/icons/burger-icon'
 import UserIcon from '../icons/user-icon'
 
 import { AppConfig, UserSession } from '@stacks/connect'
-import { connectWallet } from '../../helpers/utils'
 
 const MainNavigation = () => {
   const { data: session, status } = useSession()
@@ -56,7 +55,7 @@ const MainNavigation = () => {
               <Link href="/nfts">Marketplace</Link>
             </li>
             <li>
-              <Link href="https://medium.com/partage-btc">White Paper</Link>
+              <Link href="https://medium.com/partage-btc/partages-white-paper-347674063de7">White Paper</Link>
             </li>
             {!session && !loading && (
               <Button link={loginHandler}>

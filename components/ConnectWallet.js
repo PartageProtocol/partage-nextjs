@@ -8,8 +8,8 @@ export const userSession = new UserSession({ appConfig });
 function authenticate() {
   showConnect({
     appDetails: {
-      name: "Stacks Next.js Starter",
-      icon: window.location.origin + "/logo512.png",
+      name: "Partage NFTs",
+      icon: "/favicon.ico",
     },
     redirectTo: "/",
     onFinish: () => {
