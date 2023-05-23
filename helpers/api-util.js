@@ -1,9 +1,9 @@
 // nfts
 export async function getAllNfts() {
   const response = await fetch(
-    'https://partage-v1-dca35-default-rtdb.firebaseio.com/nfts.json'
-  )
-  const data = await response.json()
+    "https://partage-v1-dca35-default-rtdb.firebaseio.com/nfts.json"
+  );
+  const data = await response.json();
 
   const nfts = []
 
@@ -43,9 +43,9 @@ export async function getFilteredNfts(searchFilter) {
 // providers
 export async function getAllProviders() {
   const response = await fetch(
-    'https://partage-v1-dca35-default-rtdb.firebaseio.com/providers.json'
-  )
-  const data = await response.json()
+    "https://partage-v1-dca35-default-rtdb.firebaseio.com/providers.json"
+  );
+  const data = await response.json();
 
   const providers = []
 

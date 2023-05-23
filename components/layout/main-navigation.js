@@ -1,8 +1,13 @@
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { useState, useEffect } from 'react'
+
 import styles from './main-navigation.module.css'
+import Button from '../ui/button'
+import classes from '../ui/button.module.css'
+
 import BurgerIcon from 'components/icons/burger-icon'
+import UserIcon from '../icons/user-icon'
 
 import { AppConfig, UserSession } from '@stacks/connect'
 import { connectWallet } from '../../helpers/utils'
@@ -28,25 +33,24 @@ const MainNavigation = () => {
     }
   }, [])
 
-  const loginHandler = () => {
-    return '/auth'
-  }
+  const loginHandler = `/auth/`
+
   const logoutHandler = () => {
-    signOut()
+    signOut({
+      callbackUrl: `${window.location.origin}`,
+    })
   }
 
   return (
     <header className="container">
       <div className={styles.header}>
-        <Link href="/">
-          <div className={styles.logo}>Partage</div>
-        </Link>
-
+        <div className={styles.logo}>
+          <Link href="/">Partage</Link>
+        </div>
         <nav className={styles.nav}>
           <div className={styles.nav__icon}>
             <BurgerIcon />
           </div>
-
           <ul className={styles.nav__menu}>
             <li>
               <Link href="/nfts">Marketplace</Link>
@@ -54,36 +58,29 @@ const MainNavigation = () => {
             <li>
               <Link href="https://medium.com/partage-btc">White Paper</Link>
             </li>
-            {loggedIn ? (
-              <li
-                onClick={() => {
-                  setLoggedIn(false)
-                  localStorage.clear()
-                }}
-              >
-                Disconnect Wallet
-              </li>
-            ) : (
-              <li onClick={() => connectWallet(userSession)}>Connect Wallet</li>
-            )}
             {!session && !loading && (
-              <a href="/auth">
-                <button>Login</button>
-              </a>
+              <Button link={loginHandler}>
+                <span>Login</span>
+                <span className={classes.icon}>
+                  <UserIcon />
+                </span>
+              </Button>
             )}
             {session && (
               <li>
-                <Link href="/profile">User Dashboard</Link>
+                <Link href="/dashboard">User Dashboard</Link>
               </li>
             )}
             {session && (
               <li>
-                <Link href="/connect-wallet">Connect Wallet</Link>
-              </li>
-            )}
-            {session && (
-              <li>
-                <button onClick={logoutHandler}>Logout</button>
+                <Button 
+                onClick={logoutHandler}
+                >
+                  <span>Logout</span>
+                  <span className={classes.icon}>
+                    <UserIcon />
+                  </span>
+                </Button>
               </li>
             )}
           </ul>

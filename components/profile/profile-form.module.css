@@ -11,7 +11,7 @@
 .control label {
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: #353336;
+  color: white;
   display: block;
 }
 
@@ -34,9 +34,9 @@
   cursor: pointer;
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
-  background-color: #38015c;
-  color: white;
-  border: 1px solid #38015c;
+  background-color: orange;
+  color: #353336;
+  border: 1px solid orange;
 }
 
 .action button:hover {

@@ -1,6 +1,9 @@
-import Button from '../components/ui/button'
-
 import { useEffect, useState } from 'react'
+import { getSession } from "next-auth/react";
+
+import ConnectWallet from "../components/ConnectWallet";
+import UserProfile from "../components/profile/user-profile";
+import Button from '../components/ui/button'
 
 import { contractEvents } from '../helpers/contract-events'
 
@@ -27,9 +30,11 @@ function dashboardPage() {
 
   return (
     <div>
-      <h1>User Dashboard (rankings + my-favorites)</h1>
-      <h2>combining last sales page + my favorites from react project</h2>
-      <p>Testnet adress is: {adressTest}</p>
+      <UserProfile />
+      <div>
+          {/* ConnectWallet file: `../components/ConnectWallet.js` */}
+          <ConnectWallet />
+      </div>
       <div>
         <Button onClick={() => listNft()}>List NFT</Button>
         <Button>Unlist NFT</Button>
@@ -47,6 +52,23 @@ function dashboardPage() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }
 
 export default dashboardPage

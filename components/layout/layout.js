@@ -13,7 +13,7 @@ function Layout(props) {
   return (
     <Fragment>
       <MainNavigation />
-      <>{props.children}</>
+      <main>{props.children}</main>
       {activeNotification && (
         <Notification
           title={activeNotification.title}
