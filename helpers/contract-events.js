@@ -361,7 +361,7 @@ export const contractEvents = () => {
     const amountPrompt = prompt('Enter amount:')
     const amount = amountPrompt != null ? +amountPrompt : 'none'
 
-    const functionArgs = [uintCV(listingId), uintCV(amount)]
+    const functionArgs = [uintCV(+listingId), uintCV(+amount)]
 
     openContract(functionName, functionArgs)
   }

@@ -1,5 +1,5 @@
 // use this page to filtered NFTs
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
@@ -10,6 +10,8 @@ import Button from '../../components/ui/button'
 import ErrorAlert from '../../components/ui/error-alert'
 
 function FilteredNftsPage() {
+  const [filteredData, setFilteredData] = useState([])
+
   const router = useRouter()
 
   const filterData = router.query.slug
@@ -34,14 +36,12 @@ function FilteredNftsPage() {
     )
   }
 
-  const filteredNfts = getFilteredNfts({
+  getFilteredNfts({
     category: filteredCategory,
     provider: filteredProvider,
-  })
+  }).then((data) => setFilteredData(data))
 
-  console.log(filteredNfts)
-
-  if (!filteredNfts || filteredNfts.length === 0) {
+  if (!filteredData || filteredData.length === 0) {
     return (
       <Fragment>
         <ErrorAlert>
@@ -64,9 +64,9 @@ function FilteredNftsPage() {
         />
       </Head>
       <ResultsTitle category={filteredCategory} provider={filteredProvider} />
-      <NftList items={filteredNfts} />
+      <NftList nfts={filteredData} />
     </Fragment>
   )
 }
 
-export default FilteredNftsPage;
+export default FilteredNftsPage
