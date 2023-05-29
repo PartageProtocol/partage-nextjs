@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
-import { getSession } from "next-auth/react";
+import { getSession } from 'next-auth/react'
 
-import ConnectWallet from "../components/ConnectWallet";
-import UserProfile from "../components/profile/user-profile";
+import ConnectWallet from '../components/ConnectWallet'
+import UserProfile from '../components/profile/user-profile'
 import Button from '../components/ui/button'
 
 import { contractEvents } from '../helpers/contract-events'
 
 function dashboardPage() {
-  const [adressTest, setAdressTest] = useState('')
-
   const {
     transferNFT,
     transfer,
@@ -23,17 +20,12 @@ function dashboardPage() {
     listNft,
   } = contractEvents()
 
-  useEffect(() => {
-    const newAdress = JSON.parse(localStorage.getItem('blockstack-session'))
-    setAdressTest(newAdress.userData.profile.stxAddress.testnet)
-  }, [])
-
   return (
     <div>
       <UserProfile />
       <div>
-          {/* ConnectWallet file: `../components/ConnectWallet.js` */}
-          <ConnectWallet />
+        {/* ConnectWallet file: `../components/ConnectWallet.js` */}
+        <ConnectWallet />
       </div>
       <div>
         <Button onClick={() => listNft()}>List NFT</Button>
@@ -55,20 +47,20 @@ function dashboardPage() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getSession({ req: context.req })
 
   if (!session) {
     return {
       redirect: {
-        destination: "/dashboard",
+        destination: '/dashboard',
         permanent: false,
       },
-    };
+    }
   }
 
   return {
     props: { session },
-  };
+  }
 }
 
 export default dashboardPage
