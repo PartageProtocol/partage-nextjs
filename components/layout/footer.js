@@ -128,7 +128,7 @@ const Footer = () => {
                 <a href="https://medium.com/partage-btc/partages-white-paper-347674063de7">White Paper</a>
               </li>
               <li>
-                <a href="/auth">Create account</a>
+                <a href="/auth">Login</a>
               </li>
             </ul>
           </div>

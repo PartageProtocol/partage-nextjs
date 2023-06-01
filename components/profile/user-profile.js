@@ -19,7 +19,7 @@ function UserProfile() {
 
   return (
     <section className={classes.profile}>
-      <h1>Your User Profile</h1>
+      <h1>Your User Dashboard</h1>
       <ProfileForm onChangePassword={changePasswordHandler} />
     </section>
   );

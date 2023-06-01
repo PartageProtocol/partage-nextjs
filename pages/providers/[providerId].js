@@ -23,14 +23,13 @@ function ProviderDetailPage({ provider, providerNfts }) {
   return (
     <Fragment>
       <Head>
-        <title>{provider.name}</title>
+        <title>Partage's {provider.name} NFTs</title>
         <meta name="description" content={provider.bio} />
       </Head>
 
       <Provider provider={provider} />
 
-      <h2>Tab Bar: Created {provider.data} NFTs</h2>
-      <h1>NFTs from this provider</h1>
+      <h5>NFTs from this provider</h5>
       <NftList nfts={providerNfts} />
     </Fragment>
   )

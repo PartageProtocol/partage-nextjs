@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth'
+import NextAuth from 'next-auth/next'
 import CredentialsProviders from 'next-auth/providers/credentials'
 
 import { verifyPassword } from '../../../helpers/auth'
@@ -21,7 +21,7 @@ export default NextAuth({
 
         if (!user) {
           client.close()
-          throw new Error('No user found.')
+          throw new Error('No user found!')
         }
 
         const isValid = await verifyPassword(
@@ -31,11 +31,18 @@ export default NextAuth({
 
         if (!isValid) {
           client.close()
-          throw new Error('Could not log you in.')
+          throw new Error('Invalid password.')
         }
 
         client.close()
-        return { email: user.email }
+
+        if (user) {
+          return { 
+            email: user.email 
+          }
+        } else {
+          return null
+        }
       },
     }),
   ],

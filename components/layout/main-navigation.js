@@ -36,7 +36,7 @@ const MainNavigation = () => {
 
   const logoutHandler = () => {
     signOut({
-      callbackUrl: `${window.location.origin}`,
+      callbackUrl: "https://hellopartage.xyz",
     })
   }
 
