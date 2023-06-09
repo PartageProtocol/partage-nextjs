@@ -35,9 +35,7 @@ const MainNavigation = () => {
   const loginHandler = `/auth/`
 
   const logoutHandler = () => {
-    signOut({
-      callbackUrl: "https://hellopartage.xyz",
-    })
+    signOut({ callbackUrl: "/" })
   }
 
   return (
