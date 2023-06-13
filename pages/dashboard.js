@@ -1,10 +1,12 @@
-import { getSession } from 'next-auth/react'
+import { getServerSession } from "next-auth/next"
 
 import ConnectWallet from '../components/ConnectWallet'
 import UserProfile from '../components/profile/user-profile'
 import Button from '../components/ui/button'
 
 import { contractEvents } from '../helpers/contract-events'
+
+import { authOptions } from './api/auth/[...nextauth]'
 
 function dashboardPage() {
   const {
@@ -19,7 +21,6 @@ function dashboardPage() {
     unlistFractions,
     listNft,
   } = contractEvents()
-
   return (
     <div>
       <UserProfile />
@@ -47,7 +48,7 @@ function dashboardPage() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req })
+  const session = await getServerSession(context.req, context.res, authOptions)
 
   if (!session) {
     return {
