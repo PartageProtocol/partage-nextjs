@@ -11,7 +11,6 @@ module.exports = (phase) => {
         mongodb_database: 'partage-v1-dev',
     
         NEXTAUTH_URL:'http://localhost:3000/',
-        NEXT_PUBLIC_SECRET: 'e9fd41e89309fc00c9e20d583ccdc7ba',
       },
     };
   }
@@ -26,7 +25,6 @@ module.exports = (phase) => {
       mongodb_database: 'partage-v1',
   
       NEXTAUTH_URL:'https://hellopartage.xyz',
-      NEXTAUTH_SECRET: 'e9fd41e89309fc00c9e20d583ccdc7ba',
     },
   };
 };
