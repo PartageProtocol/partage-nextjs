@@ -130,6 +130,9 @@ const Footer = () => {
               <li>
                 <a href="https://medium.com/partage-btc">Tutorials</a>
               </li>
+              <li>
+                <a href="https://docs.google.com/document/d/1-ZoP8lExQZ_LDxBG0ZXdbFr7i8Ie0ymcMn6Uh-XfpZc/edit?usp=sharing">Privacy Policy</a>
+              </li>
             </ul>
           </div>
 
