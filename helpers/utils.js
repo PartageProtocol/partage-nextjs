@@ -13,3 +13,11 @@ export function connectWallet(userSession) {
     userSession,
   })
 }
+
+export const removeUndefinedValues = (obj) => {
+  return JSON.parse(JSON.stringify(obj, (key, value) => {
+    if (value !== undefined) {
+      return "";
+    }
+  }));
+};
