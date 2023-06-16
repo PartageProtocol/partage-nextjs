@@ -8,6 +8,8 @@ import { contractEvents } from '../helpers/contract-events'
 
 import { authOptions } from './api/auth/[...nextauth]'
 
+import { removeUndefinedValues } from 'helpers/utils'
+
 function dashboardPage() {
   const {
     transferNFT,
@@ -58,9 +60,11 @@ export async function getServerSideProps(context) {
       },
     }
   }
+  
+  const updatedSession = removeUndefinedValues(session)
 
   return {
-    props: { session },
+    props: { updatedSession },
   }
 }
 
