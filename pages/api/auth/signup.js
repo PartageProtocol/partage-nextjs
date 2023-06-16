@@ -1,5 +1,7 @@
 import { hashPassword } from "../../../helpers/auth";
-import { connectDatabase } from "../../../helpers/db-util";
+import { getUserByEmail, createUser } from "../../../helpers/api-util";
+import validator from "validator";
+
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -9,7 +11,7 @@ async function handler(req, res) {
 
     if (
       !email ||
-      !email.includes("@") ||
+      !validator.isEmail(email) ||
       !password ||
       password.trim().length < 7
     ) {
@@ -20,29 +22,17 @@ async function handler(req, res) {
       return;
     }
 
-    const client = await connectDatabase();
+    const existingUser = await getUserByEmail(email)
 
-    const db = client.db();
-
-    const existingUser = await db.collection("users").findOne({
-      email: email,
-    });
-
-    if (existingUser) {
+    if (!existingUser.length === 0) {
         res.status(422).json({message: 'User already exists.'});
-        client.close();
         return;
     }
-
     const hashedPassword = await hashPassword(password);
 
-    const result = await db.collection("users").insertOne({
-      email: email,
-      password: hashedPassword,
-    });
+    await createUser({email:email, password: hashedPassword})
 
     res.status(201).json({ message: "Created user!" });
-    client.close();
   }
   // if req.method isn't POST, don't do anything
 }

@@ -6,7 +6,6 @@ import Button from '../../components/ui/button'
 import Comments from 'components/input/comments'
 import NftDetail from '@/modules/nft-detail'
 
-import { getNftById, getHighlightedNfts } from 'helpers/api-util'
 import { contractEvents } from '../../helpers/contract-events'
 
 const NftDetailPage = ({ nft }) => {
@@ -22,7 +21,9 @@ const NftDetailPage = ({ nft }) => {
     buyNft,
     getUtilityProvider,
   } = contractEvents()
-  const nftid = nft.id.slice(1, 3)
+  
+  //??? "u12" type
+  const nftid = nft.id
   if (!nft) {
     return (
       <div className="center">
@@ -67,7 +68,20 @@ const NftDetailPage = ({ nft }) => {
 export async function getStaticProps(context) {
   const nftId = context.params.nftId
 
-  const nft = await getNftById(nftId)
+
+  const nft = await Promise.all([
+    (async () => {
+      const nftResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getNftById', id:nftId }),
+      });
+
+      return nftResponse.json();
+    })()
+  ]);
 
   return {
     props: {
@@ -78,8 +92,20 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const nfts = await getHighlightedNfts()
 
+  const nfts = await Promise.all([
+    (async () => {
+      const highlightedNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getHighlightedNfts' }),
+      });
+
+      return highlightedNftsResponse.json();
+    })()
+  ]);
   const paths = nfts.map((nft) => ({ params: { nftId: nft.id } }))
 
   return {

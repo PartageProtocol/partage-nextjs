@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import { connectDatabase } from "../../../helpers/db-util";
+import { getUserByEmail, changePassword } from "../../../helpers/api-util";
 import { hashPassword, verifyPassword } from "../../../helpers/auth";
 
 async function handler(req, res) {
@@ -18,15 +18,12 @@ async function handler(req, res) {
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
 
-  const client = await connectDatabase();
+  const usersCollection = await getUserByEmail(userEmail)
 
-  const usersCollection = client.db().collection("users");
-
-  const user = await usersCollection.findOne({ email: userEmail });
+  const user = usersCollection[0];
 
   if (!user) {
     res.status(404).json({ message: "User not found." });
-    client.close();
     return;
   }
 
@@ -36,18 +33,14 @@ async function handler(req, res) {
 
   if (!passwordsAreEqual) {
     res.status(403).json({ message: "Invalid password." });
-    client.close();
     return;
   }
 
   const hashedPassword = hashPassword(newPassword);
 
-  const result = await usersCollection.updateOne(
-    { email: userEmail },
-    { $set: { password: hashedPassword } }
-  );
+  const result = await changePassword(
+    { email: userEmail, password: hashedPassword });
 
-  client.close();
   res.status(200).json({message: 'Password updated.'})
 }
 

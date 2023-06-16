@@ -18,10 +18,7 @@ import Head from 'next/head'
 
 import Home from '@/modules/home'
 
-import {
-  getHighlightedNfts,
-  getHighlightedProviders,
-} from '../helpers/api-util'
+import axios from "axios"
 
 const HomePage = ({ nfts, providers }) => {
   const [emailItems, setEmailItems] = useState([])
@@ -73,10 +70,35 @@ const HomePage = ({ nfts, providers }) => {
 }
 
 export async function getStaticProps() {
-  const highlightedNfts = await getHighlightedNfts()
-  const highlightedProviders = await getHighlightedProviders()
+
+  const [highlightedNfts, highlightedProviders] = await Promise.all([
+    (async () => {
+      const highlightedNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getHighlightedNfts' }),
+      });
+
+      return highlightedNftsResponse.json();
+    })(),
+    (async () => {
+      const highlightedProvidersResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getHighlightedProviders' }),
+      });
+
+      return highlightedProvidersResponse.json();
+    })(),
+  ]);
+
 
   return {
+
     props: {
       nfts: highlightedNfts,
       providers: highlightedProviders,

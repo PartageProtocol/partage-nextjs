@@ -1,4 +1,4 @@
-import { connectDatabase, insertDocument } from '../../helpers/db-util';
+import { subNewsletter } from '../../helpers/api-util';
 
 // will allow to send request to https://domainname.com/api/emails
 async function handler(req, res) {
@@ -11,21 +11,11 @@ async function handler(req, res) {
       return;
     }
 
-    let client;
+
 
     try {
-      // connect to mongoDB database
-      client = await connectDatabase();
-    } catch (error) {
-      // status 500 indicates smth went wrong w/ server
-      res.status(500).json({ message: "Connecting to database failed!" });
-      return;
-    }
-
-    try {
-      await insertDocument(client, 'newsletter', { email: userEmail });
-      //disconnect from db client
-      client.close();
+      await subNewsletter(userEmail);
+    
     } catch (error) {
       res.status(500).json({ message: "Inserting data failed!" });
       return;

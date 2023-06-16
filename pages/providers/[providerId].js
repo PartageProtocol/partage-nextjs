@@ -4,11 +4,7 @@ import { Fragment } from 'react'
 
 import Provider from '@/modules/provider'
 import NftList from 'components/nft-list'
-import {
-  getAllProviders,
-  getProviderById,
-  getProviderNfts,
-} from 'helpers/api-util'
+
 
 // builds a provider page from the properties of a selected provider id
 function ProviderDetailPage({ provider, providerNfts }) {
@@ -39,8 +35,20 @@ function ProviderDetailPage({ provider, providerNfts }) {
 export async function getStaticProps(context) {
   const providerId = context.params.providerId
 
-  const provider = await getProviderById(providerId)
-  const providerNfts = await getProviderNfts(providerId)
+  const provider = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({func:"getProviderById", id:providerId}),
+  })
+  const providerNfts = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({func:"getProviderNfts", id:context.params.name}),
+  })
 
   return {
     props: {
@@ -53,10 +61,24 @@ export async function getStaticProps(context) {
 
 // gets a provider id by the path queried
 export async function getStaticPaths() {
-  const providers = await getAllProviders()
+
+  const providers = await Promise.all([
+    (async () => {
+      const providersResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getAllProviders' }),
+      });
+
+      return allProvidersResponse.json();
+    })()
+  ]);
+
 
   const paths = providers.map((provider) => ({
-    params: { providerId: provider.id },
+    params: { providerId: provider.id, name:provider.name },
   }))
 
   return {

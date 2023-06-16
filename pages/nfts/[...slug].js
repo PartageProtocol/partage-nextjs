@@ -2,8 +2,6 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-
-import { getFilteredNfts } from '../../helpers/api-util'
 import NftList from '../../components/nfts/nft-list'
 import ResultsTitle from '../../components/nfts/results-title'
 import Button from '../../components/ui/button'
@@ -35,10 +33,12 @@ function FilteredNftsPage() {
       </Fragment>
     )
   }
-
-  getFilteredNfts({
-    category: filteredCategory,
-    provider: filteredProvider,
+  fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({func:"getFilteredNfts", category:filteredCategory, provider: filteredProvider}),
   }).then((data) => setFilteredData(data))
 
   if (!filteredData || filteredData.length === 0) {
