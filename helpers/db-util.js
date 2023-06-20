@@ -26,17 +26,6 @@ const allowedOperators = [
 const keysArray = Object.keys(allowedKeys)
 
 
-/*
-async function tester(){
-  let db = await connectDatabase();
-  
-  const filterArray = [{colName: "rowid", operator: "=", value: "5", word: "AND"}, {colName: "provider", operator: "=", value: "Tare"}]
-  //getAllDocuments(db, 'nfts', filterArray,"123", []);
-  updateDocument(db, 'newsletter', [{colName: "email", operator: "=", value: "i.hotmail.com"}],{email:"nice@gmail.com"}, "123");
-  getAllDocuments(db, "newsletter", [], "123", []);
-}*/
-
-
 export async function connectDatabase(filepath){
     return new sqlite3.Database(filepath); 
 }

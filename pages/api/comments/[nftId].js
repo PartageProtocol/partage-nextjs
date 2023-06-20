@@ -45,6 +45,7 @@ async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const documents = await getNftComments(nftId);
+      console.log(documents)
       res.status(200).json({ comments: documents });
     } catch (error) {
       res.status(500).json({ message: "Getting comments failed." });

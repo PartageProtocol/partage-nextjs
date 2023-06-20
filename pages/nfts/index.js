@@ -35,7 +35,7 @@ export async function getStaticProps() {
 
   //All nfts will be big, need to implement a 'lazy load' eventually
 
-  const nfts = await Promise.all([
+  const nftsArray = await Promise.all([
     (async () => {
       const allNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
         method: 'POST',
@@ -48,7 +48,7 @@ export async function getStaticProps() {
       return allNftsResponse.json();
     })()
   ]);
-
+  const nfts =  nftsArray[0] 
   return {
     props: {
       nfts,

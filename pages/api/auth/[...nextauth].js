@@ -2,44 +2,35 @@ import NextAuth from 'next-auth/next'
 import CredentialsProviders from 'next-auth/providers/credentials'
 
 import { verifyPassword } from '../../../helpers/auth'
-import { connectDatabase } from '../../../helpers/db-util'
+import { getUserByEmail } from "../../../helpers/api-util";
 
 export const authOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     session: {
       jwt: true,
     },
-    providers: [
-      CredentialsProviders({
-        async authorize(credentials) {
-          const client = await connectDatabase()
-  
-          const usersCollection = client.db().collection('users')
-  
-          const user = await usersCollection.findOne({
-            email: credentials.email,
-          })
-  
-          if (!user) {
-            client.close()
-            throw new Error('No user found!')
-          }
-  
-          const isValid = await verifyPassword(
-            credentials.password,
-            user.password
-          )
+
+      providers: [
+    CredentialsProviders({
+      async authorize(credentials) {
+        const user = await getUserByEmail(credentials.email)
+
+        if (!user[0]) {
+          throw new Error('No user found!')
+        }
+
+        const isValid = await verifyPassword(
+          credentials.password,
+          user[0].password
+        )
   
           if (!isValid) {
-            client.close()
             throw new Error('Invalid password.')
           }
   
-          client.close()
-  
-          if (user) {
+          if (user[0]) {
             return { 
-              email: user.email 
+              email: user[0].email 
             }
           } else {
             return null
@@ -48,6 +39,7 @@ export const authOptions = {
       }),
     ]
   }
+
 
 
 export default NextAuth(authOptions)

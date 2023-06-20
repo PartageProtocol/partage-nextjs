@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Button from '../../components/ui/button'
 import Comments from 'components/input/comments'
 import NftDetail from '@/modules/nft-detail'
-
+import { getAllNfts } from 'helpers/frontend-db-util'
 import { contractEvents } from '../../helpers/contract-events'
 
 const NftDetailPage = ({ nft }) => {
@@ -68,8 +68,7 @@ const NftDetailPage = ({ nft }) => {
 export async function getStaticProps(context) {
   const nftId = context.params.nftId
 
-
-  const nft = await Promise.all([
+  const nftArray = await Promise.all([
     (async () => {
       const nftResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
         method: 'POST',
@@ -82,7 +81,7 @@ export async function getStaticProps(context) {
       return nftResponse.json();
     })()
   ]);
-
+  const nft = nftArray[0][0]
   return {
     props: {
       nft,
@@ -106,7 +105,8 @@ export async function getStaticPaths() {
       return highlightedNftsResponse.json();
     })()
   ]);
-  const paths = nfts.map((nft) => ({ params: { nftId: nft.id } }))
+
+  const paths = nfts[0].map((nft) => ({ params: { nftId: (nft.id).toString() } }))
 
   return {
     paths: paths,
