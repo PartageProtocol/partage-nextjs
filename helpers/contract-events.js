@@ -330,7 +330,7 @@ export const contractEvents = () => {
     openContract(functionName, functionArgs)
   }
 
-  const transfer = async () => {
+  const transferFractions = async () => {
     const functionName = 'transfer'
     const tokenPrompt = prompt('Enter ID:')
     const tokenId = tokenPrompt != null ? +tokenPrompt : -1
@@ -458,7 +458,7 @@ export const contractEvents = () => {
     getBalance,
     listFractions,
     unlistFractions,
-    transfer,
+    transferFractions,
     buyFractions,
     setUtilityProvider,
     setPlatformFees,

@@ -49,8 +49,8 @@ const NftDetailPage = ({ nft }) => {
       </Head>
       <NftDetail nft={nft} />
       <div className="center">
-        <Button onClick={() => buyNft()}>Buy</Button>
-        <Button onClick={() => buyFractions()}>Buy-fractions</Button>
+        <Button onClick={() => buyNft()}>Buy NFT</Button>
+        <Button onClick={() => buyFractions()}>Buy Fractions</Button>
       </div>
       <div>
         <p>{'The owner is: ' + owner}</p>

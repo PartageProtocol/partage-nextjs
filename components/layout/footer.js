@@ -128,7 +128,7 @@ const Footer = () => {
                 <a href="https://medium.com/partage-btc/partages-white-paper-347674063de7">White Paper</a>
               </li>
               <li>
-                <a href="https://medium.com/partage-btc">Tutorials</a>
+                <a href="https://medium.com/partage-btc/partage-tutorials-8e1f6868716d">Tutorials</a>
               </li>
               <li>
                 <a href="https://docs.google.com/document/d/1-ZoP8lExQZ_LDxBG0ZXdbFr7i8Ie0ymcMn6Uh-XfpZc/edit?usp=sharing">Privacy Policy</a>

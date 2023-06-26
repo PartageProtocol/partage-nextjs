@@ -13,7 +13,7 @@ import { removeUndefinedValues } from 'helpers/utils'
 function dashboardPage() {
   const {
     transferNFT,
-    transfer,
+    transferFractions,
     burn,
     fractionalize,
     burnFractions,
@@ -34,7 +34,7 @@ function dashboardPage() {
         <Button onClick={() => listNft()}>List NFT</Button>
         <Button>Unlist NFT</Button>
         <Button onClick={() => transferNFT()}>Transfer NFT</Button>
-        <Button onClick={() => transfer()}>Transfer</Button>
+        <Button onClick={() => transferFractions()}>Transfer Fractions</Button>
         <Button onClick={() => burn()}>Burn NFT</Button>
         <Button onClick={() => fractionalize()}>Fractionalize NFT</Button>
         <Button onClick={() => listFractions()}>List Fractions</Button>
