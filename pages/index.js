@@ -69,37 +69,37 @@ const HomePage = ({ nfts, providers }) => {
 
 export async function getStaticProps() {
 
-  // const [highlightedNfts, highlightedProviders] = await Promise.all([
-  //   (async () => {
-  //     const highlightedNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ func: 'getHighlightedNfts' }),
-  //     });
+  const [highlightedNfts, highlightedProviders] = await Promise.all([
+    (async () => {
+      const highlightedNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getHighlightedNfts' }),
+      });
 
-  //     return highlightedNftsResponse.json();
-  //   })(),
-  //   (async () => {
-  //     const highlightedProvidersResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ func: 'getHighlightedProviders' }),
-  //     });
+      return highlightedNftsResponse.json();
+    })(),
+    (async () => {
+      const highlightedProvidersResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ func: 'getHighlightedProviders' }),
+      });
 
-  //     return highlightedProvidersResponse.json();
-  //   })(),
-  // ]);
+      return highlightedProvidersResponse.json();
+    })(),
+  ]);
 
 
   return {
 
     props: {
-      nfts: [], // highlightedNfts,
-      providers: [] // highlightedNftProviders
+      nfts: highlightedNfts,
+      providers: highlightedProviders
     },
     // update page every 10 min
     revalidate: 1800,
