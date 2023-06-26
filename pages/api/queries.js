@@ -2,6 +2,7 @@ import { validateEmail, validateText, validateName, getFilteredNfts, getAllNfts,
 import validator from "validator";
 /*
     Functions that are free to be called from the frontend, NO authentication, only call premade queries to return data from db
+    Needs an upgrade to have a read only access to the db. Call through functions to protect data.
  */ 
 
     //`http://localhost:3000/api/queries?func=${param1}&param2=${param2}&param3=${param3}`;
@@ -30,7 +31,7 @@ async function handler(req, res) {
                 result = await getProviderById(req.body.id);
                 break;
             case "getProviderNfts":
-                result = await getProviderNfts(req.bodyy.provider)
+                result = await getProviderNfts(req.body.provider)
                 break;
             case "getHighlightedProviders":
                 result = await getHighlightedProviders();

@@ -5,6 +5,9 @@ import { Fragment } from 'react'
 import Provider from '@/modules/provider'
 import NftList from 'components/nft-list'
 
+import { getAllProviders, getProviderNfts } from 'helpers/frontend-db-util'
+
+import { provider, providerNfts, pathsProvider } from 'store/dbSnapshot'
 
 // builds a provider page from the properties of a selected provider id
 function ProviderDetailPage({ provider, providerNfts }) {
@@ -33,26 +36,21 @@ function ProviderDetailPage({ provider, providerNfts }) {
 
 // gets a provider properties by the provider id
 export async function getStaticProps(context) {
-  const providerId = context.params.providerId
+  // const providerId = context.params.providerId
 
-  const provider = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({func:"getProviderById", id:providerId}),
-  })
-  const providerNfts = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({func:"getProviderNfts", id:context.params.name}),
-  })
+  // const providerArray = await Promise.all([
+  //   getAllProviders()
+  // ]);
+  // const provider = providerArray[0][0]
+
+  // const providerNftsArray = await Promise.all([
+  //   getProviderNfts(provider.name)
+  // ]);
+  // const providerNfts = providerNftsArray[0]
 
   return {
     props: {
-      provider,
+      provider: provider,
       providerNfts: providerNfts,
     },
     revalidate: 1800,
@@ -62,27 +60,18 @@ export async function getStaticProps(context) {
 // gets a provider id by the path queried
 export async function getStaticPaths() {
 
-  const providers = await Promise.all([
-    (async () => {
-      const providersResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ func: 'getAllProviders' }),
-      });
+  // const providersArray = await Promise.all([
+  //   getAllProviders()
+  // ]);
 
-      return allProvidersResponse.json();
-    })()
-  ]);
+  // const providers = providersArray[0]
 
-
-  const paths = providers.map((provider) => ({
-    params: { providerId: provider.id, name:provider.name },
-  }))
-
+  // const paths = providers.map((provider) => ({
+  //   params: { providerId: (provider.id).toString(), name:provider.name },
+  // }))
+  // console.log('paths: ', paths)
   return {
-    paths: paths,
+    paths: pathsProvider,
     // let getstatic know if there are more paths
     fallback: 'blocking',
   }

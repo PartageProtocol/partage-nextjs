@@ -3,6 +3,10 @@ import validator from "validator";
 const authToken = process.env.DB_AUTH_TOKEN;
 const urlBegin = process.env.NEXTAUTH_URL;
 
+/*
+  To be called only in other APIs, do not give direct access to users.
+*/
+
 /**
  * 
  * @param {Object} bodyObject - {collection:"x", filtersArray:, document:, colsToReturn, callType} depending on the call 
@@ -38,7 +42,7 @@ export async function postComment(comment) {
   return commentId;
   }
 export async function getNftComments(id) {
-  const nftComments = await callAPI({collection:"comments", filtersArray:[{colName:"id", operator:"=", value:id.toString()}], colsToReturn:[], callType:"get"})
+  const nftComments = await callAPI({collection:"comments", filtersArray:[{colName:"nftId", operator:"=", value:id.toString()}], colsToReturn:[], callType:"get"})
   return nftComments
   }
 
