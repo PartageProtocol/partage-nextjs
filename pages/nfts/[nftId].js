@@ -8,6 +8,8 @@ import NftDetail from '@/modules/nft-detail'
 import { getAllNfts } from 'helpers/frontend-db-util'
 import { contractEvents } from '../../helpers/contract-events'
 
+import { paths } from 'store/dbSnapshot'
+
 const NftDetailPage = ({ nft }) => {
   const [owner, setOwner] = useState('')
   const [uri, setUri] = useState('')
@@ -66,25 +68,25 @@ const NftDetailPage = ({ nft }) => {
 }
 
 export async function getStaticProps(context) {
-  const nftId = context.params.nftId
+  // const nftId = context.params.nftId
 
-  const nftArray = await Promise.all([
-    (async () => {
-      const nftResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ func: 'getNftById', id:nftId }),
-      });
+  // const nftArray = await Promise.all([
+  //   (async () => {
+  //     const nftResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ func: 'getNftById', id:nftId }),
+  //     });
 
-      return nftResponse.json();
-    })()
-  ]);
-  const nft = nftArray[0][0]
+  //     return nftResponse.json();
+  //   })()
+  // ]);
+  // const nft = nftArray[0][0]
   return {
     props: {
-      nft,
+      nft: {}, // remove this empty object!!!!
     },
     revalidate: 30,
   }
@@ -92,22 +94,22 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
 
-  const nfts = await Promise.all([
-    (async () => {
-      const highlightedNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ func: 'getHighlightedNfts' }),
-      });
+  // const nfts = await Promise.all([
+  //   (async () => {
+  //     const highlightedNftsResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/queries`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ func: 'getHighlightedNfts' }),
+  //     });
 
-      return highlightedNftsResponse.json();
-    })()
-  ]);
+  //     return highlightedNftsResponse.json();
+  //   })()
+  // ]);
 
-  const paths = nfts[0].map((nft) => ({ params: { nftId: (nft.id).toString() } }))
-
+  // const paths = nfts[0].map((nft) => ({ params: { nftId: (nft.id).toString() } }))
+  // console.log('paths: ', paths)
   return {
     paths: paths,
     // let getstatic know if there are more paths
